@@ -1,5 +1,5 @@
 {
-    "hosp": {
+    "core": {
         "admissions": {
             "n_rows": 275,
             "columns": {
@@ -10,13 +10,12 @@
                     "dischtime",
                     "deathtime",
                     "admission_type",
-                    "admit_provider_id",
                     "admission_location",
                     "discharge_location",
                     "insurance",
                     "language",
                     "marital_status",
-                    "race",
+                    "ethnicity",
                     "edregtime",
                     "edouttime",
                     "hospital_expire_flag"
@@ -36,11 +35,56 @@
                     "object",
                     "object",
                     "object",
-                    "object",
                     "int64"
                 ]
             }
         },
+        "patients": {
+            "n_rows": 100,
+            "columns": {
+                "colname": [
+                    "subject_id",
+                    "gender",
+                    "anchor_age",
+                    "anchor_year",
+                    "anchor_year_group",
+                    "dod"
+                ],
+                "dtype": [
+                    "int64",
+                    "object",
+                    "int64",
+                    "int64",
+                    "object",
+                    "float64"
+                ]
+            }
+        },
+        "transfers": {
+            "n_rows": 1190,
+            "columns": {
+                "colname": [
+                    "subject_id",
+                    "hadm_id",
+                    "transfer_id",
+                    "eventtype",
+                    "careunit",
+                    "intime",
+                    "outtime"
+                ],
+                "dtype": [
+                    "int64",
+                    "float64",
+                    "int64",
+                    "object",
+                    "object",
+                    "object",
+                    "object"
+                ]
+            }
+        }
+    },
+    "hosp": {
         "diagnoses_icd": {
             "n_rows": 4506,
             "columns": {
@@ -131,16 +175,18 @@
             }
         },
         "d_labitems": {
-            "n_rows": 1622,
+            "n_rows": 1630,
             "columns": {
                 "colname": [
                     "itemid",
                     "label",
                     "fluid",
-                    "category"
+                    "category",
+                    "loinc_code"
                 ],
                 "dtype": [
                     "int64",
+                    "object",
                     "object",
                     "object",
                     "object"
@@ -148,7 +194,7 @@
             }
         },
         "emar": {
-            "n_rows": 35835,
+            "n_rows": 35211,
             "columns": {
                 "colname": [
                     "subject_id",
@@ -157,7 +203,6 @@
                     "emar_seq",
                     "poe_id",
                     "pharmacy_id",
-                    "enter_provider_id",
                     "charttime",
                     "medication",
                     "event_txt",
@@ -175,13 +220,12 @@
                     "object",
                     "object",
                     "object",
-                    "object",
                     "object"
                 ]
             }
         },
         "emar_detail": {
-            "n_rows": 72018,
+            "n_rows": 70718,
             "columns": {
                 "colname": [
                     "subject_id",
@@ -277,7 +321,7 @@
             }
         },
         "labevents": {
-            "n_rows": 107727,
+            "n_rows": 105556,
             "columns": {
                 "colname": [
                     "labevent_id",
@@ -285,7 +329,6 @@
                     "hadm_id",
                     "specimen_id",
                     "itemid",
-                    "order_provider_id",
                     "charttime",
                     "storetime",
                     "value",
@@ -306,7 +349,6 @@
                     "object",
                     "object",
                     "object",
-                    "object",
                     "float64",
                     "object",
                     "float64",
@@ -318,14 +360,13 @@
             }
         },
         "microbiologyevents": {
-            "n_rows": 2899,
+            "n_rows": 2885,
             "columns": {
                 "colname": [
                     "microevent_id",
                     "subject_id",
                     "hadm_id",
                     "micro_specimen_id",
-                    "order_provider_id",
                     "chartdate",
                     "charttime",
                     "spec_itemid",
@@ -354,7 +395,6 @@
                     "int64",
                     "object",
                     "object",
-                    "object",
                     "int64",
                     "object",
                     "int64",
@@ -371,46 +411,6 @@
                     "object",
                     "object",
                     "float64",
-                    "object",
-                    "object"
-                ]
-            }
-        },
-        "omr": {
-            "n_rows": 2964,
-            "columns": {
-                "colname": [
-                    "subject_id",
-                    "chartdate",
-                    "seq_num",
-                    "result_name",
-                    "result_value"
-                ],
-                "dtype": [
-                    "int64",
-                    "object",
-                    "int64",
-                    "object",
-                    "object"
-                ]
-            }
-        },
-        "patients": {
-            "n_rows": 100,
-            "columns": {
-                "colname": [
-                    "subject_id",
-                    "gender",
-                    "anchor_age",
-                    "anchor_year",
-                    "anchor_year_group",
-                    "dod"
-                ],
-                "dtype": [
-                    "int64",
-                    "object",
-                    "int64",
-                    "int64",
                     "object",
                     "object"
                 ]
@@ -493,7 +493,6 @@
                     "transaction_type",
                     "discontinue_of_poe_id",
                     "discontinued_by_poe_id",
-                    "order_provider_id",
                     "order_status"
                 ],
                 "dtype": [
@@ -507,13 +506,12 @@
                     "object",
                     "object",
                     "object",
-                    "object",
                     "object"
                 ]
             }
         },
         "poe_detail": {
-            "n_rows": 3795,
+            "n_rows": 3053,
             "columns": {
                 "colname": [
                     "poe_id",
@@ -532,20 +530,16 @@
             }
         },
         "prescriptions": {
-            "n_rows": 18087,
+            "n_rows": 18154,
             "columns": {
                 "colname": [
                     "subject_id",
                     "hadm_id",
                     "pharmacy_id",
-                    "poe_id",
-                    "poe_seq",
-                    "order_provider_id",
                     "starttime",
                     "stoptime",
                     "drug_type",
                     "drug",
-                    "formulary_drug_cd",
                     "gsn",
                     "ndc",
                     "prod_strength",
@@ -561,10 +555,6 @@
                     "int64",
                     "int64",
                     "int64",
-                    "object",
-                    "float64",
-                    "object",
-                    "object",
                     "object",
                     "object",
                     "object",
@@ -603,17 +593,6 @@
                 ]
             }
         },
-        "provider": {
-            "n_rows": 40508,
-            "columns": {
-                "colname": [
-                    "provider_id"
-                ],
-                "dtype": [
-                    "object"
-                ]
-            }
-        },
         "services": {
             "n_rows": 319,
             "columns": {
@@ -632,51 +611,16 @@
                     "object"
                 ]
             }
-        },
-        "transfers": {
-            "n_rows": 1190,
-            "columns": {
-                "colname": [
-                    "subject_id",
-                    "hadm_id",
-                    "transfer_id",
-                    "eventtype",
-                    "careunit",
-                    "intime",
-                    "outtime"
-                ],
-                "dtype": [
-                    "int64",
-                    "float64",
-                    "int64",
-                    "object",
-                    "object",
-                    "object",
-                    "object"
-                ]
-            }
         }
     },
     "icu": {
-        "caregiver": {
-            "n_rows": 15468,
-            "columns": {
-                "colname": [
-                    "caregiver_id"
-                ],
-                "dtype": [
-                    "int64"
-                ]
-            }
-        },
         "chartevents": {
-            "n_rows": 668862,
+            "n_rows": 667703,
             "columns": {
                 "colname": [
                     "subject_id",
                     "hadm_id",
                     "stay_id",
-                    "caregiver_id",
                     "charttime",
                     "storetime",
                     "itemid",
@@ -689,14 +633,13 @@
                     "int64",
                     "int64",
                     "int64",
-                    "float64",
                     "object",
                     "object",
                     "int64",
                     "object",
                     "float64",
                     "object",
-                    "float64"
+                    "int64"
                 ]
             }
         },
@@ -707,7 +650,6 @@
                     "subject_id",
                     "hadm_id",
                     "stay_id",
-                    "caregiver_id",
                     "charttime",
                     "storetime",
                     "itemid",
@@ -716,7 +658,6 @@
                     "warning"
                 ],
                 "dtype": [
-                    "int64",
                     "int64",
                     "int64",
                     "int64",
@@ -730,7 +671,7 @@
             }
         },
         "d_items": {
-            "n_rows": 4014,
+            "n_rows": 3861,
             "columns": {
                 "colname": [
                     "itemid",
@@ -781,49 +722,6 @@
                 ]
             }
         },
-        "ingredientevents": {
-            "n_rows": 25728,
-            "columns": {
-                "colname": [
-                    "subject_id",
-                    "hadm_id",
-                    "stay_id",
-                    "caregiver_id",
-                    "starttime",
-                    "endtime",
-                    "storetime",
-                    "itemid",
-                    "amount",
-                    "amountuom",
-                    "rate",
-                    "rateuom",
-                    "orderid",
-                    "linkorderid",
-                    "statusdescription",
-                    "originalamount",
-                    "originalrate"
-                ],
-                "dtype": [
-                    "int64",
-                    "int64",
-                    "int64",
-                    "int64",
-                    "object",
-                    "object",
-                    "object",
-                    "int64",
-                    "float64",
-                    "object",
-                    "float64",
-                    "object",
-                    "int64",
-                    "int64",
-                    "object",
-                    "int64",
-                    "float64"
-                ]
-            }
-        },
         "inputevents": {
             "n_rows": 20404,
             "columns": {
@@ -831,7 +729,6 @@
                     "subject_id",
                     "hadm_id",
                     "stay_id",
-                    "caregiver_id",
                     "starttime",
                     "endtime",
                     "storetime",
@@ -851,6 +748,7 @@
                     "totalamountuom",
                     "isopenbag",
                     "continueinnextdept",
+                    "cancelreason",
                     "statusdescription",
                     "originalamount",
                     "originalrate"
@@ -859,7 +757,6 @@
                     "int64",
                     "int64",
                     "int64",
-                    "int64",
                     "object",
                     "object",
                     "object",
@@ -877,6 +774,7 @@
                     "float64",
                     "float64",
                     "object",
+                    "int64",
                     "int64",
                     "int64",
                     "object",
@@ -892,7 +790,6 @@
                     "subject_id",
                     "hadm_id",
                     "stay_id",
-                    "caregiver_id",
                     "charttime",
                     "storetime",
                     "itemid",
@@ -900,7 +797,6 @@
                     "valueuom"
                 ],
                 "dtype": [
-                    "int64",
                     "int64",
                     "int64",
                     "int64",
@@ -919,7 +815,6 @@
                     "subject_id",
                     "hadm_id",
                     "stay_id",
-                    "caregiver_id",
                     "starttime",
                     "endtime",
                     "storetime",
@@ -931,11 +826,16 @@
                     "orderid",
                     "linkorderid",
                     "ordercategoryname",
+                    "secondaryordercategoryname",
                     "ordercategorydescription",
                     "patientweight",
+                    "totalamount",
+                    "totalamountuom",
                     "isopenbag",
                     "continueinnextdept",
+                    "cancelreason",
                     "statusdescription",
+                    "comments_date",
                     "ORIGINALAMOUNT",
                     "ORIGINALRATE"
                 ],
@@ -943,7 +843,6 @@
                     "int64",
                     "int64",
                     "int64",
-                    "float64",
                     "object",
                     "object",
                     "object",
@@ -955,11 +854,16 @@
                     "int64",
                     "int64",
                     "object",
+                    "float64",
                     "object",
+                    "float64",
+                    "float64",
                     "float64",
                     "int64",
                     "int64",
+                    "int64",
                     "object",
+                    "float64",
                     "float64",
                     "int64"
                 ]

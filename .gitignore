@@ -1,1 +1,3 @@
-mimic-iv-clinical-database-demo-1.0/
+mimic-iv-clinical-database-demo-*/
+.vscode/
+__pycache__/

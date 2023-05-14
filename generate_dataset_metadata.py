@@ -3,7 +3,7 @@ import os, json
 
 # Generates metadata of the dataset (e.g. number of rows, names of columns, etc.)
 
-folderpath_mimic_iv = r"mimic-iv-clinical-database-demo-1.0\mimic-iv-clinical-database-demo-1.0"
+folderpath_mimic_iv = r"mimic-iv-clinical-database-demo-2.2\mimic-iv-clinical-database-demo-2.2"
 dict_metadata = {}
 
 for item in os.scandir(folderpath_mimic_iv):
